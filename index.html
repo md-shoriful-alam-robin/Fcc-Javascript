@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Catalog — Library System</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <body>
+      <header>
+        <div class="header-inner">
+          <div class="header-left">
+            <div class="header-eyebrow">Library Management System</div>
+            <h1>The <em>Catalog</em></h1>
+            <p class="header-sub">
+              A complete book registry — parsed, validated &amp; searchable.
+            </p>
+          </div>
+          <div class="header-stats" id="header-stats"></div>
+        </div>
+      </header>
+
+      <nav class="nav-bar">
+        <div class="nav-inner">
+          <button
+            class="nav-tab active"
+            data-tab="catalog"
+            onclick="switchTab('catalog', this)"
+          >
+            All Books
+          </button>
+          <button
+            class="nav-tab"
+            data-tab="decades"
+            onclick="switchTab('decades', this)"
+          >
+            By Decade
+          </button>
+          <button
+            class="nav-tab"
+            data-tab="search"
+            onclick="switchTab('search', this)"
+          >
+            Search Author
+          </button>
+          <button
+            class="nav-tab"
+            data-tab="validate"
+            onclick="switchTab('validate', this)"
+          >
+            Validate
+          </button>
+          <button
+            class="nav-tab"
+            data-tab="export"
+            onclick="switchTab('export', this)"
+          >
+            Export
+          </button>
+          <button
+            class="nav-tab"
+            data-tab="stats"
+            onclick="switchTab('stats', this)"
+          >
+            Statistics
+          </button>
+        </div>
+      </nav>
+
+      <main>
+        <div class="panel active" id="panel-catalog">
+          <div class="sec-title">
+            <h2>Full Catalog</h2>
+            <span id="catalog-label">loading…</span>
+          </div>
+          <div class="search-row">
+            <div class="search-box">
+              <label>Search</label>
+              <input
+                type="text"
+                id="catalog-search"
+                placeholder="title, author, shelf…"
+                oninput="filterCatalog()"
+              />
+            </div>
+            <select
+              class="filter-select"
+              id="catalog-filter"
+              onchange="filterCatalog()"
+            >
+              <option value="all">All entries</option>
+              <option value="valid">Valid only</option>
+              <option value="invalid">Incomplete only</option>
+            </select>
+            <span class="count-badge" id="catalog-count"></span>
+          </div>
+          <div class="book-grid" id="book-grid"></div>
+        </div>
+
+        <div class="panel" id="panel-decades">
+          <div class="sec-title">
+            <h2>Grouped by Decade</h2>
+            <span>groupByDecade(catalog)</span>
+          </div>
+          <div id="decades-container"></div>
+        </div>
+
+        <div class="panel" id="panel-search">
+          <div class="sec-title">
+            <h2>Search by Author</h2>
+            <span>findByAuthor(catalog, query)</span>
+          </div>
+          <div class="author-search">
+            <div class="search-box">
+              <label>Author</label>
+              <input
+                type="text"
+                id="author-input"
+                placeholder="e.g. King, Asimov, Dick…"
+                oninput="searchAuthor()"
+              />
+            </div>
+          </div>
+          <div class="search-result-count" id="author-result-count"></div>
+          <div class="book-grid" id="author-results"></div>
+        </div>
+
+        <div class="panel" id="panel-validate">
+          <div class="sec-title">
+            <h2>Entry Validation</h2>
+            <span>validateEntry(entry) → true / false</span>
+          </div>
+          <div class="validate-grid" id="validate-grid"></div>
+        </div>
+
+        <div class="panel" id="panel-export">
+          <div class="sec-title">
+            <h2>Export Catalog</h2>
+            <span>exportToJSON() / exportToCSV()</span>
+          </div>
+          <div class="export-tabs">
+            <button class="ex-tab active" onclick="switchExport('json', this)">
+              JSON
+            </button>
+            <button class="ex-tab" onclick="switchExport('csv', this)">
+              CSV
+            </button>
+          </div>
+          <div class="export-box">
+            <div class="export-toolbar">
+              <span class="export-format" id="export-fmt"
+                >application/json</span
+              >
+              <button class="copy-btn" id="copy-btn" onclick="copyExport()">
+                Copy
+              </button>
+            </div>
+            <pre class="export-code" id="export-code"></pre>
+          </div>
+        </div>
+
+        <div class="panel" id="panel-stats">
+          <div class="sec-title">
+            <h2>Statistics</h2>
+            <span>collection overview</span>
+          </div>
+          <div class="stats-grid" id="stats-grid"></div>
+          <div class="sec-title" style="margin-top: 1rem">
+            <h2>Books per Decade</h2>
+            <span>visual timeline</span>
+          </div>
+          <div class="timeline" id="timeline"></div>
+        </div>
+      </main>
+    </body>
+    <script src="script.js"></script>
+  </head>
+</html>
