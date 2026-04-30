@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forte — Instrument Shop</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&family=Barlow:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <header class="site-header">
+      <div class="header-top">
+        <div class="logo"><em>Forte</em></div>
+        <span class="tagline">Fine Instruments Since 1948</span>
+        <div class="header-right">
+          <div class="item-count">
+            Showing <span id="showing-count">10</span> instruments
+          </div>
+        </div>
+      </div>
+      <div class="filter-bar">
+        <span class="filter-label">Filter by</span>
+        <div class="filter-btns">
+          <button class="filter-btn active" data-val="all">All</button>
+          <button class="filter-btn" data-val="woodwinds">Woodwinds</button>
+          <button class="filter-btn" data-val="brass">Brass</button>
+          <button class="filter-btn" data-val="percussion">Percussion</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- hidden select for JS compat -->
+    <select>
+      <option value="all">All</option>
+      <option value="woodwinds">Woodwinds</option>
+      <option value="brass">Brass</option>
+      <option value="percussion">Percussion</option>
+    </select>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <h1>The Art of<br /><em>Fine Sound</em></h1>
+        <p>
+          Handpicked instruments for every musician — from the student just
+          beginning their journey to the seasoned professional seeking
+          perfection.
+        </p>
+      </div>
+      <div class="hero-right">
+        <div class="stat-row">
+          <div class="stat-num">10</div>
+          <div class="stat-lbl">Instruments in stock</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-num">3</div>
+          <div class="stat-lbl">Categories</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-num" id="price-range">$200–$4,300</div>
+          <div class="stat-lbl">Price range</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="products-section">
+      <div class="section-head">
+        <h2 id="section-title">All Instruments</h2>
+        <span class="showing" id="section-showing">10 items</span>
+      </div>
+      <div class="products-container" id="products-container"></div>
+    </section>
+
+    <footer>
+      <strong>Forte</strong> &nbsp;·&nbsp; Fine Instruments &nbsp;·&nbsp; Est.
+      1948
+    </footer>
+  </head>
+</html>
