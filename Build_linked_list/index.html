@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linked List — বাংলায় শেখো</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&family=Righteous&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <div class="header">
+      <div class="header-badge">🔗 Data Structure</div>
+      <h1>Linked List</h1>
+      <p>সহজ বাংলায় — চোখের সামনে দেখো, নিজে চালাও!</p>
+    </div>
+
+    <!-- ANALOGY -->
+    <div class="analogy-box">
+      <div class="analogy-card">
+        <div class="analogy-icon">🚂</div>
+        <div>
+          <div class="analogy-title">Linked List = ট্রেনের বগি!</div>
+          <div class="analogy-text">
+            ধরো একটা ট্রেন আছে। প্রতিটা <strong>বগি</strong> হলো একটা
+            <strong>Node</strong>। প্রতিটা বগিতে দুটো জিনিস থাকে —
+            <strong>যাত্রী (element)</strong> আর
+            <strong>পরের বগির সংযোগ (next)</strong>। শেষ বগিতে কোনো সংযোগ নেই,
+            তাই সেখানে <strong>null</strong> থাকে। Array-এর মতো সব একসাথে নয় —
+            প্রতিটা node নিজের জায়গায় থাকে, শুধু সূতো দিয়ে জোড়া!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <!-- SECTION 1: initList -->
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-num num-blue">১</div>
+          <div class="section-title-text">
+            <h3>initList() — খালি List তৈরি করো</h3>
+            <p>শুরুতে একটা ফাঁকা ট্রেন বানানো হয়</p>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="code-block">
+            <div class="code-bar">
+              <div class="cd cd-r"></div>
+              <div class="cd cd-y"></div>
+              <div class="cd cd-g"></div>
+              <span class="code-file">linked-list.js</span>
+            </div>
+            <div class="code-body">
+              <pre><span class="kw">function</span> <span class="fn">initList</span>() {
+  <span class="kw">return</span> {
+    head: <span class="nm">null</span>,   <span class="cm">// প্রথম node-এর ঠিকানা (এখন কেউ নেই)</span>
+    length: <span class="nm">0</span>    <span class="cm">// কতটা node আছে (শুরুতে শূন্য)</span>
+  };
+}</pre>
+            </div>
+          </div>
+          <div class="explain">
+            <strong>head</strong> মানে ট্রেনের সামনের বগি। শুরুতে কোনো বগি নেই,
+            তাই <code>null</code>।<br />
+            <strong>length</strong> মানে কতটা বগি আছে। শুরুতে <code>0</code>।
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 2: Node structure -->
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-num num-purple">২</div>
+          <div class="section-title-text">
+            <h3>Node কী দেখতে?</h3>
+            <p>প্রতিটা বগির ভেতরে কী থাকে</p>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="node-anatomy">
+            <div style="text-align: center">
+              <div class="head-label">▼ head</div>
+              <div style="display: flex; align-items: center; gap: 0">
+                <div class="node-box" style="border-radius: 12px 0 0 12px">
+                  <div class="node-field-label">element</div>
+                  <div class="node-field-val">42</div>
+                </div>
+                <div
+                  style="width: 1px; height: 60px; background: var(--blue)"
+                ></div>
+                <div
+                  class="node-box"
+                  style="
+                    border-radius: 0 12px 12px 0;
+                    background: var(--purple-light);
+                    border-color: var(--purple);
+                  "
+                >
+                  <div class="node-field-label" style="color: var(--purple)">
+                    next
+                  </div>
+                  <div class="node-field-val" style="color: var(--purple)">
+                    →
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="arrow-right">→</div>
+            <div style="display: flex; align-items: center; gap: 0">
+              <div class="node-box" style="border-radius: 12px 0 0 12px">
+                <div class="node-field-label">element</div>
+                <div class="node-field-val">43</div>
+              </div>
+              <div
+                style="width: 1px; height: 60px; background: var(--blue)"
+              ></div>
+              <div
+                class="node-box"
+                style="
+                  border-radius: 0 12px 12px 0;
+                  background: var(--purple-light);
+                  border-color: var(--purple);
+                "
+              >
+                <div class="node-field-label" style="color: var(--purple)">
+                  next
+                </div>
+                <div class="node-field-val" style="color: var(--purple)">→</div>
+              </div>
+            </div>
+            <div class="arrow-right">→</div>
+            <div style="display: flex; align-items: center; gap: 0">
+              <div class="node-box" style="border-radius: 12px 0 0 12px">
+                <div class="node-field-label">element</div>
+                <div class="node-field-val">44</div>
+              </div>
+              <div
+                style="width: 1px; height: 60px; background: var(--blue)"
+              ></div>
+              <div
+                class="node-box"
+                style="
+                  border-radius: 0 12px 12px 0;
+                  background: var(--gray-light);
+                  border-color: var(--border);
+                "
+              >
+                <div class="node-field-label">next</div>
+                <div class="node-field-val" style="color: var(--gray)">
+                  null
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="explain">
+            প্রতিটা node-এ <strong>দুটো ঘর</strong>: <code>element</code> = আসল
+            data (যেমন 42), <code>next</code> = পরের node-এর ঠিকানা। সর্বশেষ
+            node-এর <code>next = null</code> মানে এখানেই শেষ।
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 3: INTERACTIVE -->
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-num num-green">৩</div>
+          <div class="section-title-text">
+            <h3>নিজে চালাও — add() ও remove()</h3>
+            <p>বাটনে চাপো, দেখো কী হয়</p>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="stats-row">
+            <div class="stat-chip">
+              <div class="stat-val" id="st-len">0</div>
+              <div class="stat-lbl">Length</div>
+            </div>
+            <div class="stat-chip">
+              <div class="stat-val" id="st-empty">✓</div>
+              <div class="stat-lbl">isEmpty?</div>
+            </div>
+            <div class="stat-chip">
+              <div class="stat-val" id="st-head">null</div>
+              <div class="stat-lbl">head</div>
+            </div>
+          </div>
+
+          <!-- LIVE VISUAL -->
+          <div
+            style="
+              background: var(--gray-light);
+              border: 1px solid var(--border);
+              border-radius: 14px;
+              padding: 1.2rem;
+              margin-bottom: 1.2rem;
+              min-height: 110px;
+            "
+          >
+            <div
+              style="
+                font-family: var(--mono);
+                font-size: 0.6rem;
+                color: var(--gray);
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                margin-bottom: 0.6rem;
+              "
+            >
+              Live Linked List
+            </div>
+            <div class="ll-visual" id="ll-visual">
+              <span class="ll-empty">খালি — কোনো node নেই। Add করো!</span>
+            </div>
+          </div>
+
+          <!-- CONTROLS -->
+          <div class="controls">
+            <input
+              type="number"
+              class="inp"
+              id="add-val"
+              placeholder="যেমন: 42"
+              value="42"
+            />
+            <button class="btn btn-add" onclick="doAdd()">➕ add()</button>
+            <input
+              type="number"
+              class="inp"
+              id="rem-val"
+              placeholder="যেমন: 43"
+              value=""
+            />
+            <button class="btn btn-remove" onclick="doRemove()">
+              ➖ remove()
+            </button>
+            <button class="btn btn-reset" onclick="doReset()">↺ Reset</button>
+          </div>
+
+          <!-- EVENT LOG -->
+          <div
+            style="
+              font-family: var(--mono);
+              font-size: 0.62rem;
+              color: var(--gray);
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              margin-bottom: 0.4rem;
+            "
+          >
+            Event Log
+          </div>
+          <div class="event-log" id="event-log">
+            <div class="log-item log-info">
+              <span class="log-icon">💡</span> শুরু হলো। initList() চলেছে — list
+              খালি!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 4: add() explain -->
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-num num-green">৪</div>
+          <div class="section-title-text">
+            <h3>add() — কীভাবে কাজ করে?</h3>
+            <p>নতুন node শেষে যোগ করা</p>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="code-block">
+            <div class="code-bar">
+              <div class="cd cd-r"></div>
+              <div class="cd cd-y"></div>
+              <div class="cd cd-g"></div>
+            </div>
+            <div class="code-body">
+              <pre><span class="kw">function</span> <span class="fn">add</span>(list, element) {
+  <span class="kw">const</span> node = {
+    element: element,  <span class="cm">// আমাদের data</span>
+    next: <span class="nm">null</span>         <span class="cm">// এখনো কারো সাথে যুক্ত না</span>
+  };
+ 
+  <span class="kw">if</span> (<span class="fn">isEmpty</span>(list)) {
+    list.head = node;  <span class="cm">// list খালি হলে এটাই head</span>
+  } <span class="kw">else</span> {
+    <span class="kw">let</span> current = list.head;
+    <span class="kw">while</span> (current.next !== <span class="nm">null</span>) {  <span class="cm">// শেষ node খোঁজো</span>
+      current = current.next;
+    }
+    current.next = node;  <span class="cm">// শেষে নতুন node জুড়ে দাও</span>
+  }
+  list.length++;
+}</pre>
+            </div>
+          </div>
+          <div class="explain">
+            <strong>ধাপ ১:</strong> নতুন node তৈরি করো।<br />
+            <strong>ধাপ ২:</strong> List খালি? তাহলে এটাই
+            <code>head</code>।<br />
+            <strong>ধাপ ৩:</strong> খালি না? তাহলে শেষ node পর্যন্ত হেঁটে যাও
+            (<code>while loop</code>), তারপর সেখানে জুড়ে দাও।<br />
+            <strong>ধাপ ৪:</strong> length ১ বাড়াও।
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 5: remove() explain -->
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-num num-red">৫</div>
+          <div class="section-title-text">
+            <h3>remove() — কীভাবে কাজ করে?</h3>
+            <p>মাঝের বগি সরিয়ে দুই পাশ জোড়া দাও</p>
+          </div>
+        </div>
+        <div class="section-body">
+          <!-- REMOVE VISUAL STEPS -->
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 0.8rem;
+              margin-bottom: 1.2rem;
+            "
+          >
+            <div
+              style="
+                background: #f0fdf4;
+                border: 1px solid #86efac;
+                border-radius: 12px;
+                padding: 1rem;
+              "
+            >
+              <div
+                style="
+                  font-family: var(--mono);
+                  font-size: 0.65rem;
+                  color: var(--green);
+                  letter-spacing: 0.08em;
+                  margin-bottom: 0.5rem;
+                "
+              >
+                BEFORE — remove(43) এর আগে
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.4rem;
+                  flex-wrap: wrap;
+                "
+              >
+                <div class="ll-node-box">
+                  <div class="ll-node-element">42</div>
+                  <div class="ll-node-next has-next">next →</div>
+                </div>
+                <div class="ll-arrow">→</div>
+                <div class="ll-node-box" style="border-color: var(--red)">
+                  <div class="ll-node-element" style="background: var(--red)">
+                    43
+                  </div>
+                  <div class="ll-node-next has-next">next →</div>
+                </div>
+                <div class="ll-arrow">→</div>
+                <div class="ll-node-box">
+                  <div class="ll-node-element">44</div>
+                  <div class="ll-node-next">null</div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="text-align: center; color: var(--gray); font-size: 0.85rem"
+            >
+              ↓ 43 খোঁজো → আগেরটা (42) কে পরেরটার (44) সাথে জোড়া দাও → 43 বাদ
+            </div>
+
+            <div
+              style="
+                background: #fef2f2;
+                border: 1px solid #fca5a5;
+                border-radius: 12px;
+                padding: 1rem;
+              "
+            >
+              <div
+                style="
+                  font-family: var(--mono);
+                  font-size: 0.65rem;
+                  color: var(--red);
+                  letter-spacing: 0.08em;
+                  margin-bottom: 0.5rem;
+                "
+              >
+                AFTER — 43 সরে গেছে!
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.4rem;
+                  flex-wrap: wrap;
+                "
+              >
+                <div class="ll-node-box">
+                  <div class="ll-node-element">42</div>
+                  <div class="ll-node-next has-next">next →</div>
+                </div>
+                <div class="ll-arrow">→</div>
+                <div class="ll-node-box">
+                  <div class="ll-node-element">44</div>
+                  <div class="ll-node-next">null</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="code-block">
+            <div class="code-bar">
+              <div class="cd cd-r"></div>
+              <div class="cd cd-y"></div>
+              <div class="cd cd-g"></div>
+            </div>
+            <div class="code-body">
+              <pre><span class="kw">function</span> <span class="fn">remove</span>(list, element) {
+  <span class="kw">let</span> previous = <span class="nm">null</span>;   <span class="cm">// আগের node</span>
+  <span class="kw">let</span> current = list.head; <span class="cm">// শুরু থেকে খোঁজো</span>
+ 
+  <span class="kw">while</span> (current !== <span class="nm">null</span> && current.element !== element) {
+    previous = current;       <span class="cm">// এক ধাপ এগিয়ে যাও</span>
+    current = current.next;
+  }
+ 
+  <span class="kw">if</span> (current === <span class="nm">null</span>) <span class="kw">return</span>; <span class="cm">// পাওয়া যায়নি!</span>
+ 
+  <span class="kw">if</span> (previous !== <span class="nm">null</span>) {
+    previous.next = current.next; <span class="cm">// আগেরটাকে পরেরটার সাথে জোড়া</span>
+  } <span class="kw">else</span> {
+    list.head = current.next;     <span class="cm">// head নিজেই বাদ যাচ্ছে</span>
+  }
+  list.length--;
+}</pre>
+            </div>
+          </div>
+
+          <div class="explain">
+            ট্রেনের মাঝের বগি সরাতে হলে — সামনের বগির hook সরানো বগি বাদ দিয়ে
+            পরের বগিতে লাগিয়ে দাও। JavaScript এটা
+            <code>previous.next = current.next</code> দিয়ে করে।
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 6: Summary -->
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-num num-purple">৬</div>
+          <div class="section-title-text">
+            <h3>সব Functions একসাথে</h3>
+            <p>এক নজরে দেখো</p>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="states-wrap">
+            <table class="states-table">
+              <thead>
+                <tr>
+                  <th>Function</th>
+                  <th>কী করে</th>
+                  <th>Parameter</th>
+                  <th>Return করে?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <code style="font-family: var(--mono); color: var(--blue)"
+                      >initList()</code
+                    >
+                  </td>
+                  <td>খালি list তৈরি</td>
+                  <td>কিছু না</td>
+                  <td><span class="tag tag-blue">{ head, length }</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <code style="font-family: var(--mono); color: var(--blue)"
+                      >isEmpty(list)</code
+                    >
+                  </td>
+                  <td>list খালি কিনা চেক</td>
+                  <td>list</td>
+                  <td>
+                    <span class="tag tag-green">true</span> /
+                    <span class="tag tag-red">false</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <code style="font-family: var(--mono); color: var(--green)"
+                      >add(list, el)</code
+                    >
+                  </td>
+                  <td>শেষে নতুন node যোগ</td>
+                  <td>list + element</td>
+                  <td>কিছু না (list বদলায়)</td>
+                </tr>
+                <tr>
+                  <td>
+                    <code style="font-family: var(--mono); color: var(--red)"
+                      >remove(list, el)</code
+                    >
+                  </td>
+                  <td>node খুঁজে বাদ দেয়</td>
+                  <td>list + element</td>
+                  <td>কিছু না (list বদলায়)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </head>
+  <script src="script.js"></script>
+</html>
