@@ -1,0 +1,47 @@
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg:         #0a0a0f;
+  --bg2:        #111118;
+  --bg3:        #1a1a26;
+  --border:     #2a2a3a;
+  --accent:     #00ff88;
+  --accent2:    #00ccff;
+  --danger:     #ff4466;
+  --warning:    #ffaa00;
+  --text:       #e8e8f0;
+  --text2:      #8888aa;
+  --low:        #00ccff;
+  --high:       #ff4466;
+  --mid:        #ffaa00;
+  --found:      #00ff88;
+  --font-d:     'Syne', sans-serif;
+  --font-m:     'Space Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-d);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { min-height: 100vh; }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+@keyframes fadeUp   { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+@keyframes pulse    { 0%,100%{transform:scale(1);} 50%{transform:scale(1.06);} }
+@keyframes glow     { 0%,100%{box-shadow:0 0 8px currentColor;} 50%{box-shadow:0 0 24px currentColor, 0 0 48px currentColor;} }
+@keyframes scanline { 0%{transform:translateY(-100%);} 100%{transform:translateY(100vh);} }
+@keyframes blink    { 0%,100%{opacity:1;} 50%{opacity:0;} }
+@keyframes slideIn  { from{opacity:0;transform:translateX(-12px);} to{opacity:1;transform:translateX(0);} }
+@keyframes spin     { to{transform:rotate(360deg);} }
+
+.fade-up  { animation: fadeUp  0.4s ease both; }
+.slide-in { animation: slideIn 0.3s ease both; }
